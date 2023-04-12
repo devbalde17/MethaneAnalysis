@@ -40,7 +40,6 @@ df_abat.shape
 # #df_og.columns
 # df_og.drop(columns= 'source')
 # #df_abat.head()
-# #print(df_abat)
 # #df_meth.head()
 # #df_meth.describe()
 # #df_meth.columns
