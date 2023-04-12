@@ -27,10 +27,10 @@ plt.show()
 
 
 
-# df_oil_gas =  pd.read_csv("oil_gas.csv")
-# df_coal = pd.read_csv("coal.csv")
-# df_abat = pd.concat([df_oil_gas, df_coal])
-# df_abat.shape
+df_oil_gas =  pd.read_csv("oil_gas.csv")
+df_coal = pd.read_csv("coal.csv")
+df_abat = pd.concat([df_oil_gas, df_coal])
+df_abat.shape
 
 
 # #df_coal.columns
