@@ -102,7 +102,7 @@ def draw3():
     ax.pie(top_grouped_data_sum['emissions'], labels=top_grouped_data_sum['type'], autopct='%1.1f%%', startangle=90)
     ax.axis('equal')
     plt.title('Proportion of Total Emissions by Type for Top 10 Countries')
-    # plt.show()
+    
 
     
  
