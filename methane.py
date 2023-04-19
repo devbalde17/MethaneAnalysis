@@ -31,12 +31,12 @@ top_grouped_data = grouped_data[grouped_data['country'].isin(top_countries)]
 
 # Grouping data by type to get the mean savings and cost
 abatement_grouped = df2.groupby('type').agg({'savings': 'mean', 'cost': 'mean'}).reset_index()
+
 # savings-to-cost ratio
 abatement_grouped['savings_to_cost_ratio'] = abatement_grouped['savings'] / abatement_grouped['cost']
+
 # savings-to-cost ratio in descending order
 sorted_data = abatement_grouped.sort_values(by='savings_to_cost_ratio', ascending=False)
-# print(sorted_data)
-
 
 
 # Create a stacked bar chart for the top 10 countries, broken down by type
@@ -48,14 +48,11 @@ def draw0():
     plt.ylabel('Emissions')
     plt.legend(title='Type', bbox_to_anchor=(1, 1))
     plt.xticks(rotation=45)
-    # plt.show()
-
-
+    
 
 df_oil_gas =  pd.read_csv("oil_gas.csv")
 df_coal = pd.read_csv("coal.csv")
 df_abat = pd.concat([df_oil_gas, df_coal])
-#df_abat.shape
 
 def draw1():
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -65,7 +62,6 @@ def draw1():
     plt.ylabel('Emissions')
     plt.legend(title='Source', bbox_to_anchor=(1, 1))
     plt.xticks(rotation=45)
-    # plt.show()
 
 def draw2():
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -74,12 +70,9 @@ def draw2():
     plt.ylabel('Savings-to-Cost Ratio')
     plt.title('Cost Efficiency of Methane Abatement Methods by Source')
     plt.xticks(rotation=75)
-    # plt.show()
 
 
-
-### Dashboard Stuff ###
-
+# creating dashboard
 
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
