@@ -92,7 +92,7 @@ span[data-baseweb="tag"] {
 </style>''', unsafe_allow_html=True)   #<----- title)
 
 
-options = ['draw0','draw1', 'draw2', 'draw3', 'draw4', 'draw_pie_chart']
+options = ['draw0','draw1', 'draw2', 'draw3', 'draw4']
 st.sidebar.header("Choose your KPI")
 selecto = st.sidebar.radio("KPI List", options)
 
@@ -125,14 +125,6 @@ def draw_pie_chart():
     plt.title("Share of Methane Emissions by Type (All Countries)")
     # plt.show()
 
-    
-# def draw_pie_chart():
-#     all_countries_grouped = df_meth.groupby('type').agg({'emissions': 'sum'}).reset_index()
-#     fig, ax = plt.subplots(figsize=(8, 8))
-#     ax.pie(all_countries_grouped['emissions'], labels=all_countries_grouped['type'], autopct='%1.1f%%', startangle=90)
-#     ax.axis('equal')  # Equal aspect ratio ensures that the pie chart is circular.
-#     plt.title('Methane Emissions by Type for All Countries')
-#     # plt.show()
     
 if selecto == 'draw0':
     draw0()
