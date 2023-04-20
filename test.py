@@ -62,15 +62,14 @@ def emissions_source():
     plt.ylabel('Emissions')
     plt.legend(title='Source', bbox_to_anchor=(1, 1))
     plt.xticks(rotation=45)
-
-def abatement_cost():
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sorted_data.plot(x='type', y='savings_to_cost_ratio', kind='bar', ax=ax, legend=None, color= "green")
-    plt.xlabel('Abatement Type')
-    plt.ylabel('Savings-to-Cost Ratio')
-    plt.title('Cost Efficiency of Methane Abatement Methods by Source')
-    plt.xticks(rotation=75)
-
+    
+def proportion_total_emissions():
+    top_grouped_data_sum = top_grouped_data.groupby('type').agg({'emissions': 'sum'}).reset_index()
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.pie(top_grouped_data_sum['emissions'], labels=top_grouped_data_sum['type'], autopct='%1.1f%%', startangle=90)
+    ax.axis('equal')
+    plt.title('Proportion of Total Emissions by Type for Top 10 Countries')
+    # plt.show()
 
 # creating dashboard
 
@@ -85,26 +84,28 @@ span[data-baseweb="tag"] {
 </style>''', unsafe_allow_html=True)   #<----- title)
 
 
-options = ['emissions type wise', 'emissions source', 'abatement cost', 'proportion total emissions', 'average abatement cost']
+options = ['emissions type wise', 'emissions source', 'proportion total emissions', 'abatement cost', 'average abatement cost']
 st.sidebar.header("Choose your KPI")
 selecto = st.sidebar.radio("KPI List", options)
 
-def proportion_total_emissions():
-    top_grouped_data_sum = top_grouped_data.groupby('type').agg({'emissions': 'sum'}).reset_index()
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.pie(top_grouped_data_sum['emissions'], labels=top_grouped_data_sum['type'], autopct='%1.1f%%', startangle=90)
-    ax.axis('equal')
-    plt.title('Proportion of Total Emissions by Type for Top 10 Countries')
-    # plt.show()
 
+def abatement_cost():
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sorted_data.plot(x='type', y='savings_to_cost_ratio', kind='bar', ax=ax, legend=None, color= "green")
+    plt.xlabel('Abatement Type')
+    plt.ylabel('Savings-to-Cost Ratio')
+    plt.title('Cost Efficiency of Methane Abatement Methods by Source')
+    plt.xticks(rotation=75)
     
  
 def average_abatement_cost():
     fig, ax = plt.subplots(figsize=(10, 6))
     sorted_data.plot(x='type', y='cost', kind='barh', ax=ax, legend=None, color= "green")
     plt.xlabel('Average Cost')
+    plt.xlim([15, 40])
     plt.ylabel('Abatement Type')
     plt.title('Average Cost of Methane Abatement Methods by Type')
+    
     # plt.show()
     
     
@@ -115,14 +116,35 @@ if selecto == 'emissions type wise':
 elif selecto == 'emissions source':
     emissions_source()
     st.pyplot()
+    
+elif selecto == 'proportion total emissions':
+    proportion_total_emissions()
+    st.pyplot()   
+    
 elif selecto == 'abatement cost':
     abatement_cost()
     st.pyplot()
-elif selecto == 'proportion total emissions':
-    proportion_total_emissions()
-    st.pyplot()
+
 else: #'average_abatement_cost'
     average_abatement_cost()
     st.pyplot()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
