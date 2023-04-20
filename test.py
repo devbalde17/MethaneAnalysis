@@ -85,7 +85,7 @@ span[data-baseweb="tag"] {
 </style>''', unsafe_allow_html=True)   #<----- title)
 
 
-options = ['emissions_type_wise', 'emissions_source', 'abatement_cost', 'proportion_total_emissions', 'average_abatement_cost']
+options = ['emissions type wise', 'emissions source', 'abatement cost', 'proportion total emissions', 'average abatement cost']
 st.sidebar.header("Choose your KPI")
 selecto = st.sidebar.radio("KPI List", options)
 
@@ -108,17 +108,17 @@ def average_abatement_cost():
     # plt.show()
     
     
-if selecto == 'emissions_type_wise':
+if selecto == 'emissions type wise':
     emissions_type_wise()
     st.pyplot()
     
-elif selecto == 'emissions_source':
+elif selecto == 'emissions source':
     emissions_source()
     st.pyplot()
-elif selecto == 'abatement_cost':
+elif selecto == 'abatement cost':
     abatement_cost()
     st.pyplot()
-elif selecto == 'proportion_total_emissions':
+elif selecto == 'proportion total emissions':
     proportion_total_emissions()
     st.pyplot()
 else: #'average_abatement_cost'
