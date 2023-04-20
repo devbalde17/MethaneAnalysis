@@ -28,7 +28,7 @@ cleantable = list(map(cleaner,table))
 #print(cleantable) #10
 rowlen = len(cleantable) / 10
 #print("we're gonna have "+str(rowlen)+" rows")
-primet = pd.DataFrame(np.array(cleantable).reshape(rowlen,10))     #we wanna keep 0 5 and 6, met co2 equivalent total and per capita
+primet = pd.DataFrame(np.array(cleantable).reshape(int(rowlen),10))   #we wanna keep 0 5 and 6, met co2 equivalent total and per capita
 primet = primet.drop([1,2,3,4,7,8,9],axis = 1)
 emissions = primet.drop(0,axis=0)
 emissions = emissions.rename(columns={0: "Country",5: "Methane CO2 Equivalent(Tons)",6:"CO2 Equivalent per capita(tons)"})
